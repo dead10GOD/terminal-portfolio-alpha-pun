@@ -190,20 +190,7 @@ export const commands = {
     '',
     'echo "Warning: May cause spontaneous hiring 📄"',
   ],
-  jokes: () => {
-    const jokes = [
-      'Why do programmers prefer dark mode? Because light attracts bugs! 🐛',
-      'How many programmers does it take to change a light bulb? None, that\'s a hardware problem. 💡',
-      'Why do Java developers wear glasses? Because they can\'t C#! 👓',
-      'I would tell you a UDP joke, but you might not get it. 📡',
-      'Why did the programmer quit his job? He didn\'t get arrays. 📊',
-      'There are 10 types of people: those who understand binary and those who don\'t. 01010',
-      'Why do programmers hate nature? It has too many bugs. 🌿',
-      'A SQL query goes into a bar, walks up to two tables, and asks "Can I join you?" 🍺',
-    ];
-    const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
-    return [randomJoke, '', '(Ba dum tss... *cricket sounds*) 🦗'];
-  },
+  jokes: () => ['Really ? You here for the jokes ?', ''],
   clear: () => [],
   cls: () => [],
   exit: () => ['Goodbye! May your code compile and your bugs be few! 👋'],

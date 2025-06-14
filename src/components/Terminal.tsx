@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { commands, Command } from '../utils/terminalCommands';
 import { getLineColorClass, getWelcomeMessage } from '../utils/terminalUtils';
@@ -32,6 +33,13 @@ const Terminal = () => {
       inputRef.current.focus();
     }
   }, []);
+
+  // Focus input after each command
+  useEffect(() => {
+    if (!isTyping && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isTyping]);
 
   const handleCommand = (input: string) => {
     const command = input.toLowerCase().trim();
@@ -85,26 +93,26 @@ const Terminal = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white font-mono p-4 overflow-hidden relative">
+    <div className="min-h-screen bg-black text-white font-mono p-2 sm:p-4 overflow-hidden relative">
       <TimeDisplay />
 
       <div 
         ref={terminalRef}
-        className="h-screen overflow-y-auto cursor-text"
+        className="h-screen overflow-y-auto cursor-text pb-20"
         onClick={handleTerminalClick}
       >
-        <div className="space-y-2">
+        <div className="space-y-1 sm:space-y-2 max-w-full">
           {history.map((command, index) => (
             <div key={index} className="animate-fade-in">
               {command.input && (
-                <div className="text-green-400">
+                <div className="text-green-400 break-words text-sm sm:text-base">
                   {command.input}
                 </div>
               )}
               {command.output.map((line, lineIndex) => (
                 <div 
                   key={lineIndex} 
-                  className={getLineColorClass(line)}
+                  className={`${getLineColorClass(line)} break-words text-sm sm:text-base leading-relaxed`}
                 >
                   {line}
                 </div>
@@ -112,19 +120,19 @@ const Terminal = () => {
             </div>
           ))}
           
-          <div className="flex items-center">
-            <span className="text-green-400">sankalp@portfolio:~$ </span>
+          <div className="flex items-center flex-wrap">
+            <span className="text-green-400 text-sm sm:text-base">sankalp@portfolio:~$ </span>
             <input
               ref={inputRef}
               type="text"
               value={currentInput}
               onChange={(e) => setCurrentInput(e.target.value)}
               onKeyDown={handleInputSubmit}
-              className="bg-transparent border-none outline-none text-white font-mono flex-1 ml-1"
+              className="bg-transparent border-none outline-none text-white font-mono flex-1 ml-1 text-sm sm:text-base min-w-0"
               autoComplete="off"
               disabled={isTyping}
             />
-            <span className="animate-pulse text-white">▋</span>
+            <span className="animate-pulse text-white text-sm sm:text-base">▋</span>
           </div>
         </div>
       </div>

@@ -30,9 +30,9 @@ const TimeDisplay = () => {
   };
 
   return (
-    <div className="absolute top-4 right-4 text-right">
-      <div className="text-cyan-400 text-sm">{formatDate(currentTime)}</div>
-      <div className="text-yellow-400 text-lg font-bold">{formatTime(currentTime)}</div>
+    <div className="absolute top-2 right-2 sm:top-4 sm:right-4 text-right">
+      <div className="text-cyan-400 text-xs sm:text-sm">{formatDate(currentTime)}</div>
+      <div className="text-yellow-400 text-sm sm:text-lg font-bold">{formatTime(currentTime)}</div>
     </div>
   );
 };
